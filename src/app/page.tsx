@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Login from "./auth/login";
 
 export default function Home() {
   return (
-    <div><h1>Hello world!</h1></div>
+    <div><Login/></div>
   );
 }
