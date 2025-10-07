@@ -1,49 +1,56 @@
-import { Bell, BellElectricIcon, BellIcon, LayoutDashboard, MessageSquareIcon, Settings } from "lucide-react";
+import { Bell, LayoutDashboard, MessageSquareIcon, BellIcon, Settings } from "lucide-react";
 import Image from "next/image";
 
- export default function RootLayout({
+export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <div>
-      <div className="flex flex-col ">
-        <div className="flex flex-wrap justify-between items-center shadow-md bg-white h-15 w-full">
-          <div className="relative w-30 h-15">
-            <Image alt="logo" src="/images/feedback_logo.svg" fill />
-          </div>
-          <input
-          className="border-b-black border-0 border-b-1 w-[30%]"
-            type="text"
-            placeholder="Search..."/>
-            <div className="flex flex-wrap items-center gap-4 mr-4">
-              <Bell/>
-              <div className="w-7 h-7 rounded-full bg-blue-400"></div>
-            </div>
+    <div className="flex flex-col min-h-screen overflow-hidden">
+      {/* Top Navbar */}
+      <header className="flex justify-between items-center shadow-md bg-white h-16 w-full px-4">
+        <div className="relative w-32 h-10">
+          <Image alt="logo" src="/images/feedback_logo.svg" fill className="object-contain" />
+        </div>
 
-           
+        <input
+          className="border-b border-black outline-none w-[30%]"
+          type="text"
+          placeholder="Search..."
+        />
+
+        <div className="flex items-center gap-4">
+          <Bell />
+          <div className="w-7 h-7 rounded-full bg-blue-400"></div>
         </div>
-        <div className="grid grid-cols-7 mt-2 min-h-screen ml-2 rounded-lg ">
-        <div className="col-span-1  rounded-xl shadow-md bg-white">
-          <div className="flex flex-col">
-        <div className="flex py-3 cursor-pointer flex-wrap items-center px-3 gap-2 hover:bg-gray-100">
-          <LayoutDashboard className="text-[#D02149]" size={17}/><p className="text-sm text-[#D02149]">Dashboard</p>
-        </div>
-        <div className="flex py-3 cursor-pointer flex-wrap items-center px-3 gap-2 hover:bg-gray-100">
-          <MessageSquareIcon size={17}/><p className="text-sm">Feedbacks</p>
-        </div>
-        <div className="flex py-3 cursor-pointer flex-wrap items-center px-3 gap-2 hover:bg-gray-100">
-          <BellIcon size={17}/><p className="text-sm">Notifications</p>
-        </div>
-        <div className="flex py-3 cursor-pointer flex-wrap items-center px-3 gap-2 hover:bg-gray-100">
-          <Settings size={17}/><p className="text-sm">Settings</p>
-        </div>
-        </div>
-        </div>
-        <div className="col-span-6 ml-5">{children}</div>
-        </div>
-      </div>
-      </div>
-  )
+      </header>
+
+      {/* Main layout */}
+      <main className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <aside className="hidden sm:flex flex-col w-56 bg-white rounded-xl shadow-md p-3 m-2">
+          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+            <LayoutDashboard className="text-[#D02149]" size={17} />
+            <p className="text-sm font-semibold text-[#D02149]">Dashboard</p>
+          </div>
+          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+            <MessageSquareIcon size={17} />
+            <p className="text-sm font-semibold">Feedbacks</p>
+          </div>
+          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+            <BellIcon size={17} />
+            <p className="text-sm font-semibold">Notifications</p>
+          </div>
+          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+            <Settings size={17} />
+            <p className="text-sm font-semibold">Settings</p>
+          </div>
+        </aside>
+
+        {/* Page Content */}
+        <section className="flex-1 m-2 overflow-y-auto">{children}</section>
+      </main>
+    </div>
+  );
 }
