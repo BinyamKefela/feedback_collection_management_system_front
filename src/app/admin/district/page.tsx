@@ -5,7 +5,8 @@ import { UserChart } from "@/components/admin/charts/userChart";
 import DashboardCards from "@/components/admin/dashboard_cards";
 import FeedbacksReceivedTable from "@/components/admin/tables/feedbacks_received";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Footer from "../client/footer";
+import Footer from "../../client/footer";
+import { NewUserChart } from "@/components/admin/charts/newUsersChart";
 
 function Page() {
   return (

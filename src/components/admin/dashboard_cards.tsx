@@ -6,7 +6,7 @@ import {
   TreesIcon,
   UserIcon,
 } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "../ui/card";
 
 function DashboardCards() {
   return (
@@ -18,13 +18,13 @@ function DashboardCards() {
         Dashboard
       </h3>
       <div className="w-full items-center justify-center flex">
-        <div className="grid text-xs grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-[90%]">
+        <div className="grid text-xs grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
           <Card className="w-full bg-[#1BA84F] cursor-pointer hover:bg-[#5aaa77]">
             <CardContent>
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col">
-                  <p className="text-white">total users</p>
-                  <p className="text-white">2300+</p>
+                  <p className="text-white font-bold">total users</p>
+                  <p className="text-white font-bold">2300+</p>
                 </div>
                 <UserIcon className="text-white" size={25} />
               </div>
@@ -34,8 +34,8 @@ function DashboardCards() {
             <CardContent>
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col">
-                  <p className="text-white">Total feedbacks</p>
-                  <p className="text-white">2300+</p>
+                  <p className="text-white font-bold">Total feedbacks</p>
+                  <p className="text-white font-bold">2300+</p>
                 </div>
                 <MessageCircleIcon className="text-white" size={25} />
               </div>
@@ -45,8 +45,8 @@ function DashboardCards() {
             <CardContent>
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col">
-                  <p className="text-white">total districts</p>
-                  <p className="text-white">2300+</p>
+                  <p className="text-white font-bold">total districts</p>
+                  <p className="text-white font-bold">2300+</p>
                 </div>
                 <MapPinIcon className="text-white" size={25} />
               </div>
@@ -56,8 +56,8 @@ function DashboardCards() {
             <CardContent>
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col">
-                  <p className="text-white">total branches</p>
-                  <p className="text-white">2300+</p>
+                  <p className="text-white font-bold">total branches</p>
+                  <p className="text-white font-bold">2300+</p>
                 </div>
                 <LucideGitBranch className="text-white" size={25} />
               </div>

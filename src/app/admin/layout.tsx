@@ -1,4 +1,18 @@
-import { Bell, LayoutDashboard, MessageSquareIcon, BellIcon, Settings } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import {
+  Bell,
+  LayoutDashboard,
+  MessageSquareIcon,
+  BellIcon,
+  Settings,
+  Search,
+  Menu,
+  MapPin,
+  GitBranch,
+  ChevronDown,
+} from "lucide-react";
 import Image from "next/image";
 
 export default function RootLayout({
@@ -6,51 +20,196 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Top Navbar */}
-      <header className="flex justify-between items-center shadow-md bg-white h-16 w-full px-4">
-        <div className="relative w-32 h-10">
-          <Image alt="logo" src="/images/feedback_logo.svg" fill className="object-contain" />
+      <header className="flex justify-between fixed items-center shadow-md bg-white h-16 w-full px-4  z-30">
+        <div className="flex items-center gap-3">
+          {/* Mobile menu icon */}
+          <button
+            className="sm:hidden"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
+            <Menu size={22} />
+          </button>
+
+          {/* Logo */}
+          <div className="relative w-32 h-10">
+            <Image
+              alt="logo"
+              src="/images/feedback_logo.svg"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
 
-        <input
-          className="border-b border-black outline-none w-[30%]"
-          type="text"
-          placeholder="Search..."
-        />
+        {/* Search bar */}
+        <div className="relative w-[40%] max-w-sm hidden sm:block">
+          <Search
+            className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500"
+            size={18}
+          />
+          <input
+            className="border-b border-black outline-none w-full pl-8 py-1 placeholder:text-gray-500"
+            type="text"
+            placeholder="Search..."
+          />
+        </div>
 
-        <div className="flex items-center gap-4">
-          <Bell />
+        {/* Right side (notifications + user) */}
+        <div className="flex items-center gap-4 relative">
+          {/* Notification dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setShowNotifications(!showNotifications)}
+              className="relative"
+            >
+              <Bell />
+            </button>
+
+            {showNotifications && (
+              <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-md py-2 animate-slideDown z-40">
+                <div className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                  <MapPin size={16} className="text-[#D02149]" />
+                  <span className="text-sm font-medium">Districts</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                  <GitBranch size={16} className="text-[#D02149]" />
+                  <span className="text-sm font-medium">Branches</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* User avatar */}
           <div className="w-7 h-7 rounded-full bg-blue-400"></div>
         </div>
       </header>
 
       {/* Main layout */}
-      <main className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside className="hidden sm:flex flex-col w-56 bg-white rounded-xl shadow-md p-3 m-2">
-          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
-            <LayoutDashboard className="text-[#D02149]" size={17} />
-            <p className="text-sm font-semibold text-[#D02149]">Dashboard</p>
-          </div>
-          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
-            <MessageSquareIcon size={17} />
-            <p className="text-sm font-semibold">Feedbacks</p>
-          </div>
-          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
-            <BellIcon size={17} />
-            <p className="text-sm font-semibold">Notifications</p>
-          </div>
-          <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
-            <Settings size={17} />
-            <p className="text-sm font-semibold">Settings</p>
-          </div>
-        </aside>
+      <main className="flex flex-1 overflow-hidden relative mt-17 ">
+  {/* Sidebar for desktop (fixed & scrollable) */}
+  <aside className="hidden sm:flex flex-col fixed mt-4 ml-3  top-16 left-0 h-[calc(100vh-4rem)] w-56 bg-white rounded-xl shadow-md p-3 overflow-y-auto z-20">
+    <SidebarContent />
+  </aside>
 
-        {/* Page Content */}
-        <section className="flex-1 m-2 overflow-y-auto">{children}</section>
-      </main>
+  {/* Sidebar for mobile (slide-in animation) */}
+  <aside
+    className={`sm:hidden fixed top-0 left-0 h-full w-56 bg-white shadow-lg p-3 z-50 transform transition-transform duration-300 ${
+      sidebarOpen ? "translate-x-0" : "-translate-x-full"
+    }`}
+  >
+    <div className="flex justify-between items-center mb-4">
+      <h3 className="text-lg font-semibold">Menu</h3>
+      <button onClick={() => setSidebarOpen(false)}>✕</button>
+    </div>
+    <SidebarContent />
+  </aside>
+
+  {/* Overlay when mobile sidebar is open */}
+  {sidebarOpen && (
+    <div
+      className="fixed inset-0 bg-black/40 z-40 sm:hidden animate-fadeIn"
+      onClick={() => setSidebarOpen(false)}
+    ></div>
+  )}
+
+  {/* Page Content */}
+  <section className="flex-1 py-2 overflow-y-auto sm:ml-56">{children}</section>
+</main>
+
+
+      {/* Animations */}
+      <style jsx global>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slideDown {
+          animation: slideDown 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* --- Sidebar Content --- */
+function SidebarContent() {
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
+  return (
+    <div className="flex flex-col text-xs">
+      {/* Dashboard */}
+      <div className="flex items-center py-2 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <LayoutDashboard className="text-[#D02149]" size={17} />
+        <p className="text-xs font-semibold text-[#D02149]">Dashboard</p>
+      </div>
+
+      {/* Feedbacks dropdown */}
+      <div>
+        <div
+          className="flex items-center justify-between py-3 cursor-pointer hover:bg-gray-100 rounded-md px-2"
+          onClick={() => setFeedbackOpen(!feedbackOpen)}
+        >
+          <div className="flex items-center gap-2">
+            <MessageSquareIcon size={17} />
+            <p className="text-xs font-semibold">Feedbacks</p>
+          </div>
+          <ChevronDown
+            size={16}
+            className={`transform transition-transform duration-200 ${
+              feedbackOpen ? "rotate-180" : ""
+            }`}
+          />
+        </div>
+
+        {feedbackOpen && (
+          <div className="ml-6 mt-1 animate-slideDown">
+            <div className="flex items-center gap-2 py-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+              <MapPin size={15} className="text-[#D02149]" />
+              <p className="text-sm">Districts</p>
+            </div>
+            <div className="flex items-center gap-2 py-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+              <GitBranch size={15} className="text-[#D02149]" />
+              <p className="text-sm">Branches</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Notifications */}
+      <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <BellIcon size={17} />
+        <p className="text-xs font-semibold">Notifications</p>
+      </div>
+
+      {/* Settings */}
+      <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <Settings size={17} />
+        <p className="text-xs font-semibold">Settings</p>
+      </div>
     </div>
   );
 }

@@ -27,9 +27,9 @@ const chartConfig = {
 
 export function UserChart() {
   return (
-    <Card className="w-full h-full relative">
+    <Card className="w-full  relative">
       {/* Header with custom legend */}
-      <CardHeader className="flex flex-row justify-between items-start pb-0">
+      <CardHeader className="flex flex-row justify-between items-start pb-2">
         <CardTitle>User Distribution</CardTitle>
 
         {/* Legend */}
@@ -46,8 +46,8 @@ export function UserChart() {
       </CardHeader>
 
       {/* Chart */}
-      <CardContent className="w-full h-full flex justify-center items-center">
-        <ChartContainer config={chartConfig} className="w-full h-[300px]">
+      <CardContent className="">
+        <ChartContainer config={chartConfig} className="w-full h-[160px]">
           <PieChart>
             <ChartTooltip
               cursor={false}
@@ -57,8 +57,8 @@ export function UserChart() {
               data={chartData}
               dataKey="value"
               nameKey="name"
-              innerRadius={80}
-              outerRadius={120}
+              innerRadius={50}
+              outerRadius={70}
             />
           </PieChart>
         </ChartContainer>
