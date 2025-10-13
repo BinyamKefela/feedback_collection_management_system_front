@@ -8,7 +8,7 @@ import {
 } from "../../ui/table";
 import { Download } from "lucide-react";
 
-function FeedbacksReceivedTable() {
+function FeedbacksReceivedTable({setModalVisibility}:{setModalVisibility:()=>void}) {
   type tableDataType = {
     no: number;
     branch_location: string;
@@ -25,9 +25,14 @@ function FeedbacksReceivedTable() {
     { no: 5, branch_location: "vew", tofb: "cejvew", details: "jkwvew", date: "2025-10-10" },
   ];
 
+  const handleViewClicked = ()=>{
+    setModalVisibility();
+  }
+
   return (
     <div className="flex transform items-center justify-center px-3">
       <div className="w-full text-xs max-w-7xl bg-white rounded-lg shadow-sm p-4">
+        <h3 className="text-sm font-bold">Feedbacks received</h3>
         {/*  Search & Buttons Row */}
         <div className="flex items-end justify-end mb-3">
           <div className="flex flex-row items-end gap-3">
@@ -51,7 +56,7 @@ function FeedbacksReceivedTable() {
         {/* 🧾 Table */}
         <Table>
           <TableHeader>
-            <TableRow className="text-xs h-8">
+            <TableRow className="text-xs h-8 bg-[#dad9d9]">
               <TableHead className="px-2 py-1">No</TableHead>
               <TableHead className="px-2 py-1">Branch location</TableHead>
               <TableHead className="px-2 py-1">Type of feedback</TableHead>
@@ -64,15 +69,15 @@ function FeedbacksReceivedTable() {
             {tableData.map((_: tableDataType, index) => (
               <TableRow
                 key={index}
-                className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} text-xs h-7`}
+                className={`text-xs h-1`}
               >
-                <TableCell className="px-2 py-1">{_.no}</TableCell>
-                <TableCell className="px-2 py-1">{_.branch_location}</TableCell>
-                <TableCell className="px-2 py-1">{_.tofb}</TableCell>
-                <TableCell className="px-2 py-1">{_.details}</TableCell>
-                <TableCell className="px-2 py-1">{_.date}</TableCell>
-                <TableCell className="px-2 py-1">
-                  <button className="bg-[#D4505D] cursor-pointer hover:bg-[#d86c77] text-white border px-4 text-xs py-1 rounded-lg">
+                <TableCell className="px-2 py-1 text-gray-500">{_.no}</TableCell>
+                <TableCell className="px-2 py-1 text-gray-500">{_.branch_location}</TableCell>
+                <TableCell className="px-2 py-1 text-gray-500">{_.tofb}</TableCell>
+                <TableCell className="px-2 py-1 text-gray-500">{_.details}</TableCell>
+                <TableCell className="px-2 py-1 text-gray-500">{_.date}</TableCell>
+                <TableCell className="px-2 py-1 text-gray-500">
+                  <button onClick={()=>setModalVisibility()} className="bg-[#D4505D] cursor-pointer hover:bg-[#d86c77] text-white border px-4 text-xs py-1 rounded-lg">
                     view
                   </button>
                 </TableCell>
@@ -86,9 +91,3 @@ function FeedbacksReceivedTable() {
 }
 
 export default FeedbacksReceivedTable;
-
-
-function feedbackModal():any{
-
-  return(<div className=""></div>);
-}

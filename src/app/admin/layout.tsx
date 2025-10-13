@@ -12,8 +12,14 @@ import {
   MapPin,
   GitBranch,
   ChevronDown,
+  MessageCircleReplyIcon,
+  MessageCircleIcon,
+  CloudAlertIcon,
+  CloudUpload,
+  ThumbsUpIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function RootLayout({
   children,
@@ -93,7 +99,7 @@ export default function RootLayout({
       {/* Main layout */}
       <main className="flex flex-1 overflow-hidden relative mt-17 ">
   {/* Sidebar for desktop (fixed & scrollable) */}
-  <aside className="hidden sm:flex flex-col fixed mt-4 ml-3  top-16 left-0 h-[calc(100vh-4rem)] w-56 bg-white rounded-xl shadow-md p-3 overflow-y-auto z-20">
+  <aside className="hidden sm:flex flex-col fixed  top-16 left-0 h-[calc(100vh-4rem)] w-56 bg-white rounded-xl shadow-md p-3 overflow-y-auto z-20">
     <SidebarContent />
   </aside>
 
@@ -162,10 +168,12 @@ function SidebarContent() {
   return (
     <div className="flex flex-col text-xs">
       {/* Dashboard */}
+      <Link href={"/admin/dashboard"}>
       <div className="flex items-center py-2 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
         <LayoutDashboard className="text-[#D02149]" size={17} />
         <p className="text-xs font-semibold text-[#D02149]">Dashboard</p>
       </div>
+      </Link>
 
       {/* Feedbacks dropdown */}
       <div>
@@ -187,14 +195,19 @@ function SidebarContent() {
 
         {feedbackOpen && (
           <div className="ml-6 mt-1 animate-slideDown">
+            <Link href={'/admin/comments'}><div className="flex items-center gap-2 py-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+              <MessageCircleIcon size={15} className="text-xs" />
+              <p className="text-sm">comments</p>
+            </div></Link>
             <div className="flex items-center gap-2 py-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
-              <MapPin size={15} className="text-[#D02149]" />
-              <p className="text-sm">Districts</p>
+              <CloudUpload size={15} className="text-xs" />
+              <p className="text-sm">complaints</p>
             </div>
             <div className="flex items-center gap-2 py-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
-              <GitBranch size={15} className="text-[#D02149]" />
-              <p className="text-sm">Branches</p>
+              <ThumbsUpIcon size={15} className="text-xs" />
+              <p className="text-sm">recommendation</p>
             </div>
+
           </div>
         )}
       </div>
