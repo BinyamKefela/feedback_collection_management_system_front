@@ -17,6 +17,11 @@ import {
   CloudAlertIcon,
   CloudUpload,
   ThumbsUpIcon,
+  Siren,
+  Megaphone,
+  QrCode,
+  LineChart,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -171,9 +176,13 @@ function SidebarContent() {
       <Link href={"/admin/dashboard"}>
       <div className="flex items-center py-2 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
         <LayoutDashboard className="text-[#D02149]" size={17} />
-        <p className="text-xs font-semibold text-[#D02149]">Dashboard</p>
+        <p className="text-xs font-semibold text-[#A7710D]">Dashboard</p>
       </div>
       </Link>
+      <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <User size={17} />
+        <p className="text-xs font-semibold">User management</p>
+      </div>
 
       {/* Feedbacks dropdown */}
       <div>
@@ -183,7 +192,7 @@ function SidebarContent() {
         >
           <div className="flex items-center gap-2">
             <MessageSquareIcon size={17} />
-            <p className="text-xs font-semibold">Feedbacks</p>
+            <p className="text-xs font-semibold">Feedback Management</p>
           </div>
           <ChevronDown
             size={16}
@@ -192,7 +201,7 @@ function SidebarContent() {
             }`}
           />
         </div>
-
+        
         {feedbackOpen && (
           <div className="ml-6 mt-1 animate-slideDown">
             <Link href={'/admin/comments'}><div className="flex items-center gap-2 py-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
@@ -212,16 +221,29 @@ function SidebarContent() {
         )}
       </div>
 
-      {/* Notifications */}
+      
       <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
         <BellIcon size={17} />
-        <p className="text-xs font-semibold">Notifications</p>
+        <p className="text-xs font-semibold">Feedback and Analysis</p>
       </div>
 
       {/* Settings */}
       <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <LineChart size={17} />
+        <p className="text-xs font-semibold">Report and insights</p>
+      </div>
+
+      <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <QrCode size={17} />
+        <p className="text-xs font-semibold">QR Generator</p>
+      </div>
+      <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
+        <Megaphone size={17} />
+        <p className="text-xs font-semibold">Announcement and news</p>
+      </div>
+      <div className="flex items-center py-3 gap-2 cursor-pointer hover:bg-gray-100 rounded-md px-2">
         <Settings size={17} />
-        <p className="text-xs font-semibold">Settings</p>
+        <p className="text-xs font-semibold">logout</p>
       </div>
     </div>
   );

@@ -1,35 +1,44 @@
 import { CloudUploadIcon, MessageCircle, MessageCircleIcon, User2Icon } from "lucide-react";
+import Image from "next/image";
 
 
 export default function DashboardStatsRow() {
   return (
     <div className="flex flex-wrap justify-center gap-7 p-6">
       {/* Card 1 */}
-      <div className="flex flex-col cursor-pointer hover:bg-[#b0aefd] bg-[#C3C1FF] items-center justify-center shadow-md rounded-lg p-6 w-56">
-        <MessageCircle className="text-4xl text-blue-500 mb-2" />
-        <p className="text-md font-medium text-gray-800">Total comments</p>
-        <p className="text-sm text-black font-medium">1,240 total</p>
+      <div className="flex flex-row justify-between w-56 p-6 cursor-pointer hover:bg-[#7cf7b6] bg-[#8EFDC2] items-center  shadow-md rounded-lg">
+      <div className="flex flex-col gap-y-2">
+        <p className="text-sm font-medium text-gray-800">Total feedback</p>
+        <p className="text-lg text-black font-bold">7200 </p>
+      </div>
+      <Image alt="total feedbacks" height={50} width={50} src={"/images/fluent_person.svg"}/>
       </div>
 
       {/* Card 2 */}
-      <div className="flex flex-col items-center cursor-pointer hover:bg-[#f8b088] justify-center bg-[#FBC2A3] shadow-md rounded-lg p-6 w-56">
-        <CloudUploadIcon className="text-4xl text-green-500 mb-2" />
-        <p className="text-md font-semibold text-gray-800">Total complaints</p>
-        <p className="text-sm text-black font-medium">$12,340</p>
+      <div className="flex flex-row justify-between w-56 p-6 cursor-pointer hover:bg-[#fcb96b] bg-[#FEC788] items-center  shadow-md rounded-lg">
+      <div className="flex flex-col gap-y-2">
+        <p className="text-sm font-medium text-gray-800">Complaints</p>
+        <p className="text-lg text-black font-bold">1200 </p>
+      </div>
+      <Image alt="total feedbacks" height={50} width={50} src={"/images/complaints_icon.svg"}/>
       </div>
 
       {/* Card 3 */}
-      <div className="flex flex-col items-center justify-center cursor-pointer hover:bg-[#aefdc8] bg-[#C1FFD6] shadow-md rounded-lg p-6 w-56">
-        <MessageCircleIcon className="text-4xl text-purple-500 mb-2" />
-        <p className="text-md font-semibold text-gray-800">Total comments</p>
-        <p className="text-sm font-medium text-black">+15% this month</p>
+      <div className="flex flex-row justify-between w-56 p-6 cursor-pointer hover:bg-[#7ea6f8] bg-[#95B6F8] items-center  shadow-md rounded-lg">
+      <div className="flex flex-col gap-y-2">
+        <p className="text-sm font-medium text-gray-800">Comments</p>
+        <p className="text-lg text-black font-bold">5000 </p>
+      </div>
+      <Image alt="total feedbacks" height={50} width={50} src={"/images/comments_icon.svg"}/>
       </div>
 
       {/* Card 4 */}
-      <div className="flex flex-col items-center justify-center cursor-pointer hover:bg-[#c5c3e4] bg-[#D9D8E4] shadow-md rounded-lg p-6 w-56">
-        <User2Icon className="text-4xl text-orange-500 mb-2" />
-        <p className="text-lg font-semibold text-gray-800">Total feedbacks</p>
-        <p className="text-sm font-medium text-black">320 active</p>
+      <div className="flex flex-row justify-between w-56 p-6 cursor-pointer hover:bg-[#f663b9] bg-[#FF85CC] items-center  shadow-md rounded-lg">
+      <div className="flex flex-col gap-y-2">
+        <p className="text-sm font-medium text-gray-800">Reccomendations</p>
+        <p className="text-lg text-black font-bold">1000 </p>
+      </div>
+      <Image alt="total feedbacks" height={50} width={50} src={"/images/recomendations_icon.svg"}/>
       </div>
     </div>
   );

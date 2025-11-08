@@ -1,5 +1,6 @@
 "use client";
 
+import { EyeOffIcon, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -12,26 +13,32 @@ function Login() {
           <Image alt="login logo" src="/images/feedback_logo.svg" fill />
         </div>
         <div>
-          <h3 className="text-4xl font-bold text-[#D02149]">Welcome to<br/> Feedback collection<br/> System</h3>
+          <h3 className="text-3xl font-bold text-[#A7710D]">Welcome to Feedback collection Management System</h3>
         </div>
 
         <form className="flex flex-col gap-2 w-3/4 max-w-sm">
-          <h1 className="text-xl font-bold text-center">Sign in here please</h1>
-          <label className="text-sm font-semibold">Email</label>
+          <h1 className="text-xl text-center">Please login to access</h1>
+          <label className="text-sm ">Email</label>
+          <div className="relative">
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg" h-2 w-2 />
           <input
-            className="border bg-[#FFF8F8]  p-2 rounded-lg border-[#706B6B]"
+            className="border bg-[#FFF8F8] pl-10 w-full  p-2 rounded-lg border-[#706B6B]"
             type="email"
             placeholder="Email"
           />
+          </div>
           <label className="text-sm font-semibold">Password</label>
+          <div className="relative">
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg"  />
+          <EyeOffIcon className="absolute right-3 top-1/2 -translate-y-1/2"/>
           <input
-          
-            className="border  bg-[#FFF8F8] rounded-lg  p-2 border-[#706B6B] "
+            className="border  bg-[#FFF8F8] pl-10 w-full  p-2 rounded-lg border-[#706B6B]"
             type="password"
             placeholder="Password"
           />
+          </div>
           <div className="flex justify-end w-full">
-          <button className="bg-[#D02149] cursor-pointer text-white w-[30%] rounded-lg p-2  text-xs hover:bg-blue-600 transition">
+          <button className="bg-[#A7710D] w-full mt-4 cursor-pointer text-white  rounded-lg p-2  text-xs hover:bg-blue-600 transition">
             Login
           </button>
           </div>
