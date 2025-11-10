@@ -117,14 +117,10 @@ function Page() {
         <DashboardCards />
       </div>*/}
           <div className="w-full">
-            <h3 className="ml-5 text-lg font-bold">Dashboard</h3>
-            {modalIsVisible && (
-              <FeedBackModal setModalVisibility={setModalIsVisible} />
-            )}
+            <h3 className="ml-5 text-lg font-bold">Feedback analysis</h3>
+            
           </div>
-          <div className="flex flex-col items-center justify-center space-y-6 bg-white rounded-lg">
-            <DashboardStatsRow />
-          </div>
+          
 
           {/* Charts section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-50 sm:gap-y-5 px-3 w-full max-w-6xl mx-auto">
@@ -154,84 +150,7 @@ function Page() {
           {/*<div className="w-full max-w-6xl px-2 mt-3  ">
             <FeedbacksReceivedTable setModalVisibility={setModalVisibility} />
           </div>*/}
-          <div className="flex w-full justify-center">
-            <Card className="w-full ">
-              <CardContent className="w-full gap-y-4">
-                <h3 className="px-4 mb-2">Feedback table</h3>
-                <div>
-                  <div className="flex flex-row justify-between px-4 text-xs">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-md p-2"
-                      placeholder="Search here..."
-                    />
-                    <div className="flex flex-row">
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <button className="border-1 cursor-pointer  border-black mr-2 p-2 rounded">
-                            filter here
-                          </button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-full bg-white border-1 p-4 rounded-lg z-50">
-                          <div className="grid gap-4">
-                            <div className="space-y-2">
-                              <h4 className="leading-none font-medium">
-                                Dimensions
-                              </h4>
-                              <p className="text-muted-foreground text-sm">
-                                Set the dimensions for the layer.
-                              </p>
-                            </div>
-                            <div className="grid gap-2">
-                              <div className="grid grid-cols-3 items-center gap-4">
-                                <Label htmlFor="width">Width</Label>
-                                <Input
-                                  id="width"
-                                  defaultValue="100%"
-                                  className="col-span-2 h-8"
-                                />
-                              </div>
-                              <div className="grid grid-cols-3 items-center gap-4">
-                                <Label htmlFor="maxWidth">Max. width</Label>
-                                <Input
-                                  id="maxWidth"
-                                  defaultValue="300px"
-                                  className="col-span-2 h-8"
-                                />
-                              </div>
-                              <div className="grid grid-cols-3 items-center gap-4">
-                                <Label htmlFor="height">Height</Label>
-                                <Input
-                                  id="height"
-                                  defaultValue="25px"
-                                  className="col-span-2 h-8"
-                                />
-                              </div>
-                              <div className="grid grid-cols-3 items-center gap-4">
-                                <Label htmlFor="maxHeight">Max. height</Label>
-                                <Input
-                                  id="maxHeight"
-                                  defaultValue="none"
-                                  className="col-span-2 h-8"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                      <button className="border-1 border-black mr-2 p-2 rounded bg-[#2159AE] text-white">
-                        Export to csv
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="px-4 w-full max-w-6xl mt-2">
-                  <DataTable columns={payment_columns} data={data} />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-          <FeedBackDialogue />
+          
         </div>
       </div>
     </div>
@@ -303,24 +222,5 @@ function FeedBackModal({
         </CardContent>
       </Card>
     </div>
-  );
-}
-
-function FeedBackDialogue() {
-  return (
-    <Dialog>
-      <DialogTrigger>
-        <button className="border-2">Open</button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
   );
 }

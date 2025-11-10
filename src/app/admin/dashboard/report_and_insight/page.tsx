@@ -24,69 +24,9 @@ import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { getReports, report_columns } from "@/components/columns/report_and_insight_columns";
 
-async function getPayments() {
-  return [
-    {
-      id: "728ed52f",
-      date: "2025-01-01",
-      customer: "customer-1",
-      type: "Comment",
-      department: "Support",
-      rating: 4,
-      status: "pending",
-    },
-    {
-      id: "728ed52c",
-      date: "2025-01-02",
-      customer: "customer-2",
-      type: "Comment",
-      department: "Sales",
-      rating: 5,
-      status: "pending",
-    },
-    {
-      id: "728ed52c",
-      date: "2025-01-02",
-      customer: "customer-2",
-      type: "Comment",
-      department: "Sales",
-      rating: 5,
-      status: "pending",
-      email: "mvjewkvne@example.com",
-    },
-    {
-      id: "728ed52f",
-      date: "2025-01-01",
-      customer: "customer-1",
-      type: "Comment",
-      department: "Support",
-      rating: 4,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      date: "2025-01-01",
-      customer: "customer-1",
-      type: "Comment",
-      department: "Support",
-      rating: 4,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      date: "2025-01-01",
-      customer: "customer-1",
-      type: "Comment",
-      department: "Support",
-      rating: 4,
-      status: "pending",
-      email: "m@example.com",
-    },
-  ];
-}
+
 
 function Page() {
   const [data, setData] = useState([]);
@@ -96,7 +36,7 @@ function Page() {
   }, []);
 
   async function getP() {
-    const results = await getPayments();
+    const results = await getReports();
     setData(results);
   }
 
@@ -111,53 +51,23 @@ function Page() {
   return (
     <div className="ml-3">
       <div>
+        <h3 className="mb-3 ml-1 font-semibold mt-2">Report and insights</h3>
         <div className="flex flex-col w-full items-center space-y-6">
           {/* Dashboard cards */}
           {/*<div className="w-full max-w-8xl px-3">
         <DashboardCards />
       </div>*/}
-          <div className="w-full">
-            <h3 className="ml-5 text-lg font-bold">Dashboard</h3>
-            {modalIsVisible && (
-              <FeedBackModal setModalVisibility={setModalIsVisible} />
-            )}
-          </div>
-          <div className="flex flex-col items-center justify-center space-y-6 bg-white rounded-lg">
-            <DashboardStatsRow />
-          </div>
-
-          {/* Charts section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-50 sm:gap-y-5 px-3 w-full max-w-6xl mx-auto">
-            <div className="h-[350px]">
-              {/*<FeedbacksBarChart />*/}
-              <ShadcnLineChart />
-            </div>
-            <div className="h-[350px] ">
-              {/*<UserChart />*/}
-              {/*<FeedbacksCollectedCustomChart />*/}
-              <ShadcnPieChart />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-50 sm:mt-10 mb-30 sm:mb-20 gap-y-50 sm:gap-y-5 px-3 w-full max-w-6xl mx-auto">
-            <div className="h-[350px]">
-              {/*<FeedbacksBarChart />*/}
-              <FeedbacksBarChart />
-            </div>
-            <div className="h-[350px] ">
-              {/*<UserChart />*/}
-              {/*<FeedbacksCollectedCustomChart />*/}
-              <OverallRatingCard />
-            </div>
-          </div>
-
+         
+          
           {/* Table */}
           {/*<div className="w-full max-w-6xl px-2 mt-3  ">
             <FeedbacksReceivedTable setModalVisibility={setModalVisibility} />
           </div>*/}
+          
           <div className="flex w-full justify-center">
             <Card className="w-full ">
               <CardContent className="w-full gap-y-4">
-                <h3 className="px-4 mb-2">Feedback table</h3>
+                <h3 className="px-4 mb-2">Report table</h3>
                 <div>
                   <div className="flex flex-row justify-between px-4 text-xs">
                     <input
@@ -226,7 +136,7 @@ function Page() {
                   </div>
                 </div>
                 <div className="px-4 w-full max-w-6xl mt-2">
-                  <DataTable columns={payment_columns} data={data} />
+                  <DataTable columns={report_columns} data={data} />
                 </div>
               </CardContent>
             </Card>
